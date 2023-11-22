@@ -34,7 +34,7 @@ int c(int n, int x){
     int result = 0;
     int power = x;
     for(int i = 1; i <= n; i++){
-        result += i*power;
+        result += i * power;
         power *= x;
     }
     return result;

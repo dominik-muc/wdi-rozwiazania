@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Zwraca tablicę 9-elementową, O(log n)
+//Zwraca tablicę 10-elementową, O(log n)
 int* count_digits(int n){
-    int* result = malloc(sizeof(int) * 9);
+    int* result = malloc(sizeof(int) * 10);
+    for(int i = 0; i < 10; i++) result[i] = 0;
     while(n > 0){
         result[n % 10]++;
         n /= 10;
@@ -17,6 +18,7 @@ int diffrent_digits(int n){
     for(int i = 0; i < 10; i++){
         if(digits_n[i] > 0) result++;
     }
+    free(digits_n);
     return result;
 }
 
@@ -24,8 +26,14 @@ int similar(int n, int m){
     int* digits_n = count_digits(n);
     int* digits_m = count_digits(m);
     for(int i = 0; i < 10; i++){
-        if(digits_n[i] != digits_m[i]) return 0;
+        if(digits_n[i] != digits_m[i]){
+            free(digits_m);
+            free(digits_n);
+            return 0;
+        }
     }
+    free(digits_m);
+    free(digits_n);
     return 1;
 }
 

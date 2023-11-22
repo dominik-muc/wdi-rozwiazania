@@ -19,7 +19,7 @@ int main(){
     int n = 0;
     int k = 0;
 
-    printf("Podak n, k: ");
+    printf("Podaj n, k: ");
     scanf("%i %i", &n, &k);
     if(is_palindromic(n, k)){
         printf("Jest palindromem k-arnym\n");
