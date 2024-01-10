@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 int* primes(int n);
 
@@ -13,16 +12,18 @@ int main(){
     for(int i = 0; i < n; i++){
         if(!s[i]) printf("%i ", i);
     }
+    free(s);
     putchar('\n');
     return 0;
 }
 
 //liczba naturalna n -> tablica (wskaźnik do tablicy) n-elementowa s, s[i] = 1 <=> i nie należy do S, s[i] = 0 <=> i należy do S
+[[nodiscard]]
 int* primes(int n){
     int* s = calloc(n, sizeof(int));
     s[0] = 1;
     s[1] = 1;
-    for(int i = 2; i < (int)sqrt(n); i++){
+    for(int i = 2; i*i < n; i++){
         if(!s[i]){
             int j = i + i;
             while(j < n){
